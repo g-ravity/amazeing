@@ -4,9 +4,21 @@ const randomInt = val => {
 };
 
 class MazeBoard {
-  constructor(width, height) {
+  constructor(width, height, ctx, playerImg, targetImg) {
     this.width = width;
     this.height = height;
+    this.ctx = ctx;
+    this.pImg = playerImg;
+    this.tImg = targetImg;
+    this.gameOver = false;
+    this.player = {
+      row: this.height - 1,
+      col: randomInt(this.width)
+    };
+    this.target = {
+      row: 0,
+      col: randomInt(this.width)
+    };
     this.stack = [
       {
         row: randomInt(height),
@@ -28,35 +40,53 @@ class MazeBoard {
     }
   }
 
-  displayMaze = context => {
+  renderMaze = () => {
+    this.ctx.clearRect(0, 0, 640, 640);
+
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
         if (!this.board[i][j].n) {
-          context.beginPath();
-          context.moveTo(80 * j, 80 * i);
-          context.lineTo(80 * (j + 1), 80 * i);
-          context.stroke();
+          this.ctx.beginPath();
+          this.ctx.moveTo(80 * j, 80 * i);
+          this.ctx.lineTo(80 * (j + 1), 80 * i);
+          this.ctx.stroke();
         }
         if (!this.board[i][j].s) {
-          context.beginPath();
-          context.moveTo(80 * j, 80 * (i + 1));
-          context.lineTo(80 * (j + 1), 80 * (i + 1));
-          context.stroke();
+          this.ctx.beginPath();
+          this.ctx.moveTo(80 * j, 80 * (i + 1));
+          this.ctx.lineTo(80 * (j + 1), 80 * (i + 1));
+          this.ctx.stroke();
         }
         if (!this.board[i][j].w) {
-          context.beginPath();
-          context.moveTo(80 * j, 80 * i);
-          context.lineTo(80 * j, 80 * (i + 1));
-          context.stroke();
+          this.ctx.beginPath();
+          this.ctx.moveTo(80 * j, 80 * i);
+          this.ctx.lineTo(80 * j, 80 * (i + 1));
+          this.ctx.stroke();
         }
         if (!this.board[i][j].e) {
-          context.beginPath();
-          context.moveTo(80 * (j + 1), 80 * i);
-          context.lineTo(80 * (j + 1), 80 * (i + 1));
-          context.stroke();
+          this.ctx.beginPath();
+          this.ctx.moveTo(80 * (j + 1), 80 * i);
+          this.ctx.lineTo(80 * (j + 1), 80 * (i + 1));
+          this.ctx.stroke();
         }
       }
     }
+
+    this.ctx.drawImage(
+      this.tImg,
+      80 * this.target.col,
+      80 * this.target.row,
+      80,
+      80
+    );
+
+    this.ctx.drawImage(
+      this.pImg,
+      80 * this.player.col,
+      80 * this.player.row,
+      80,
+      80
+    );
   };
 
   calculateNeighbours = (row, col) => {
@@ -108,6 +138,32 @@ class MazeBoard {
             });
             this.board[row][col - 1].e = true;
         }
+      }
+    }
+  };
+
+  updatePlayer = dir => {
+    if (this.board[this.player.row][this.player.col][dir]) {
+      switch (dir) {
+        case "n":
+          this.player.row -= 1;
+          break;
+        case "s":
+          this.player.row += 1;
+          break;
+        case "e":
+          this.player.col += 1;
+          break;
+        case "w":
+          this.player.col -= 1;
+      }
+      this.renderMaze();
+      if (
+        this.player.row === this.target.row &&
+        this.player.col === this.target.col
+      ) {
+        this.gameOver = true;
+        alert("Congratulations");
       }
     }
   };

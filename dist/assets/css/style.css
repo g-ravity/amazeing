@@ -6,3 +6,16 @@
 #board {
   background: lightblue;
 }
+
+.img {
+  display: none;
+}
+
+#image-group img {
+  cursor: pointer;
+  margin: 20px;
+}
+
+#image-group .target {
+  display: none;
+}

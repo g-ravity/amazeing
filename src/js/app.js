@@ -3,6 +3,19 @@ import MazeBoard from "./models/MazeBoard";
 const btn = document.getElementById("btn-group");
 const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
+const imgGroup = document.getElementById("image-group");
+const html = document.getElementsByTagName("html")[0];
+
+let maze;
+let playerImg;
+let targetImg;
+
+const keyDir = {
+  ArrowUp: "n",
+  ArrowDown: "s",
+  ArrowRight: "e",
+  ArrowLeft: "w"
+};
 
 btn.addEventListener("click", event => {
   ctx.clearRect(0, 0, 640, 640);
@@ -19,7 +32,18 @@ btn.addEventListener("click", event => {
     width = 32;
     height = 32;
   }
-  const maze = new MazeBoard(width, height);
+  maze = new MazeBoard(width, height, ctx, playerImg, targetImg);
   maze.createMaze();
-  maze.displayMaze(ctx);
+  maze.renderMaze();
+});
+
+imgGroup.addEventListener("click", event => {
+  if (event.target.tagName === "IMG") {
+    playerImg = event.target;
+    targetImg = event.target.nextElementSibling;
+  }
+});
+
+html.addEventListener("keyup", event => {
+  if (!maze.gameOver) maze.updatePlayer(keyDir[event.key]);
 });
