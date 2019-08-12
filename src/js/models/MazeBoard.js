@@ -4,12 +4,9 @@ const randomInt = val => {
 };
 
 class MazeBoard {
-  constructor(width, height, ctx, playerImg, targetImg) {
+  constructor(width, height) {
     this.width = width;
     this.height = height;
-    this.ctx = ctx;
-    this.pImg = playerImg;
-    this.tImg = targetImg;
     this.gameOver = false;
     this.player = {
       row: this.height - 1,
@@ -39,55 +36,6 @@ class MazeBoard {
         });
     }
   }
-
-  renderMaze = () => {
-    this.ctx.clearRect(0, 0, 640, 640);
-
-    for (let i = 0; i < this.height; i++) {
-      for (let j = 0; j < this.width; j++) {
-        if (!this.board[i][j].n) {
-          this.ctx.beginPath();
-          this.ctx.moveTo(80 * j, 80 * i);
-          this.ctx.lineTo(80 * (j + 1), 80 * i);
-          this.ctx.stroke();
-        }
-        if (!this.board[i][j].s) {
-          this.ctx.beginPath();
-          this.ctx.moveTo(80 * j, 80 * (i + 1));
-          this.ctx.lineTo(80 * (j + 1), 80 * (i + 1));
-          this.ctx.stroke();
-        }
-        if (!this.board[i][j].w) {
-          this.ctx.beginPath();
-          this.ctx.moveTo(80 * j, 80 * i);
-          this.ctx.lineTo(80 * j, 80 * (i + 1));
-          this.ctx.stroke();
-        }
-        if (!this.board[i][j].e) {
-          this.ctx.beginPath();
-          this.ctx.moveTo(80 * (j + 1), 80 * i);
-          this.ctx.lineTo(80 * (j + 1), 80 * (i + 1));
-          this.ctx.stroke();
-        }
-      }
-    }
-
-    this.ctx.drawImage(
-      this.tImg,
-      80 * this.target.col,
-      80 * this.target.row,
-      80,
-      80
-    );
-
-    this.ctx.drawImage(
-      this.pImg,
-      80 * this.player.col,
-      80 * this.player.row,
-      80,
-      80
-    );
-  };
 
   calculateNeighbours = (row, col) => {
     let direction = "";
@@ -156,14 +104,6 @@ class MazeBoard {
           break;
         case "w":
           this.player.col -= 1;
-      }
-      this.renderMaze();
-      if (
-        this.player.row === this.target.row &&
-        this.player.col === this.target.col
-      ) {
-        this.gameOver = true;
-        alert("Congratulations");
       }
     }
   };

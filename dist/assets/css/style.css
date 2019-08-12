@@ -1,21 +1,157 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Fredoka One", cursive;
+  color: #729d39;
+}
+
+body {
+  background: #fbfad3;
+  overflow: hidden;
+}
+
+.page {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  background: #fbfad3;
+  left: 100%;
+  transition: left 0.5s ease-in-out;
+}
+
+.current-page {
+  left: 0;
+}
+
+.flex-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-parent #background-image {
+  height: 100vh;
+  background: url("/assets/img/background1.png");
+  width: 50%;
+}
+
+#heading {
+  text-align: center;
+  font-size: 3rem;
+  width: 50%;
+}
+
+#subheading {
+  font-size: 1.5rem;
+  color: #636363;
+  margin: 5px;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  border: 4px solid #729d39;
+  padding: 10px;
+  font-size: 1.5rem;
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+button:focus {
+  outline: 0;
+}
+
+#playBtn {
+  position: absolute;
+  bottom: 40px;
+  left: 25%;
+  margin-left: -30px;
+}
+
+#continueBtn {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  margin-left: -65px;
+}
+
+i.volume {
+  color: #000;
+  cursor: pointer;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+i.fa-volume-up {
+  display: none;
+}
+
+.card {
+  cursor: pointer;
+  margin: 20px;
+  background: #fff;
+  width: 300px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 10px;
+}
+
+.card img {
+  margin-top: 20px;
+}
+
+.card .name {
+  color: #636363;
+  font-size: 1.5rem;
+  margin-top: 30px;
+}
+
+.card .description {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 100%;
+  background: #fff;
+  transition: top 0.4s ease-in-out;
+  height: 100%;
+  padding: 0 20px;
+  color: #636363;
+}
+
+.current {
+  background: #fff480;
+}
+
+.current .description {
+  background: #fff480;
+}
+
+#stat {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+#container {
+  margin: 40px auto;
+  width: 640px;
 }
 
 #board {
-  background: lightblue;
+  background: #729d39;
+  margin: 40px 0;
 }
 
-.img {
-  display: none;
-}
-
-#image-group img {
-  cursor: pointer;
-  margin: 20px;
-}
-
-#image-group .target {
-  display: none;
+#avatar {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 200px;
 }

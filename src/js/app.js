@@ -1,14 +1,25 @@
 import MazeBoard from "./models/MazeBoard";
+import * as mazeView from "./views/mazeView";
+import * as audioView from "./views/audioView";
+import * as cardView from "./views/cardView";
+import * as buttonView from "./views/buttonView";
+import renderPage from "./views/pageView";
+import elem from "./views/base";
 
-const btn = document.getElementById("btn-group");
-const canvas = document.getElementById("board");
-const ctx = canvas.getContext("2d");
-const imgGroup = document.getElementById("image-group");
-const html = document.getElementsByTagName("html")[0];
+import player from "../js/img/bart.png";
+import target from "../js/img/donut.png";
 
-let maze;
-let playerImg;
-let targetImg;
+let playerImg = new Image();
+playerImg.src = player;
+let targetImg = new Image();
+targetImg.src = target;
+
+const state = {
+  maze: null,
+  playerImg: playerImg,
+  targetImg: targetImg,
+  page: 1
+};
 
 const keyDir = {
   ArrowUp: "n",
@@ -17,8 +28,7 @@ const keyDir = {
   ArrowLeft: "w"
 };
 
-btn.addEventListener("click", event => {
-  ctx.clearRect(0, 0, 640, 640);
+elem.btn.addEventListener("click", event => {
   let width, height;
   if (event.target.classList.contains("btn-easy")) {
     width = 8;
@@ -32,18 +42,55 @@ btn.addEventListener("click", event => {
     width = 32;
     height = 32;
   }
-  maze = new MazeBoard(width, height, ctx, playerImg, targetImg);
-  maze.createMaze();
-  maze.renderMaze();
+  state.maze = new MazeBoard(width, height);
+  state.maze.createMaze();
+  mazeView.renderMaze(state.maze, state.playerImg, state.targetImg);
 });
 
-imgGroup.addEventListener("click", event => {
-  if (event.target.tagName === "IMG") {
-    playerImg = event.target;
-    targetImg = event.target.nextElementSibling;
+elem.html.addEventListener("keyup", event => {
+  if (!state.maze.gameOver) {
+    state.maze.updatePlayer(keyDir[event.key]);
+    mazeView.renderMaze(state.maze);
+  }
+  if (
+    state.maze.player.row === state.maze.target.row &&
+    state.maze.player.col === state.maze.target.col
+  ) {
+    state.maze.gameOver = true;
+    alert("Congratulations");
   }
 });
 
-html.addEventListener("keyup", event => {
-  if (!maze.gameOver) maze.updatePlayer(keyDir[event.key]);
+elem.audio.addEventListener("click", event => {
+  if (event.target === elem.mute) audioView.muteAudio();
+  else audioView.playAudio();
 });
+
+for (let i = 0; i < elem.cardGroup.length; i++) {
+  elem.cardGroup[i].addEventListener("mouseenter", event => {
+    cardView.showDescription(event.target);
+  });
+
+  elem.cardGroup[i].addEventListener("mouseleave", event => {
+    cardView.hideDescription(event.target);
+  });
+
+  elem.cardGroup[i].addEventListener("click", () => {
+    cardView.highlightCard(cardGroup[i]);
+  });
+}
+
+html.addEventListener("click", event => {
+  if (event.target.classList.value.includes("btn")) {
+    buttonView.buttonClick(event.target);
+    if (event.target.id !== elem.btn2.id) renderPage(event.target.id);
+  }
+});
+
+elem.btn2.addEventListener("click", () => {
+  if (state.playerImg) renderPage(elem.btn2.id);
+  else alert("Please choose an avatar!");
+});
+
+// window.onload = music.play();
+// music.volume = 0.3;

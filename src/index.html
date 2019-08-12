@@ -5,55 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>aMAZEing - The Maze Game</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
     <link rel="shortcut icon" href="/icon.png" />
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
   <body>
-    <div id="btn-group">
-      <button class="btn btn-easy">Easy</button>
-      <button class="btn btn-medium">Medium</button>
-      <button class="btn btn-hard">Hard</button>
+    <div id="page-1" class="page current-page">
+      <div class="flex-parent">
+        <div id="heading">
+          a<span style="color:#e82525">MAZE</span>ing
+          <p id="subheading">The Maze Game</p>
+        </div>
+        <div id="background-image"></div>
+      </div>
+
+      <button id="playBtn" class="btn">Play!</button>
     </div>
-    <canvas id="board" width="640" height="640"></canvas>
-    <h3>
-      Pick your avatar:
-    </h3>
-    <div id="image-group">
-      <img src="/assets/img/homer.png" alt="Homer Simpson" width="200" />
-      <img
-        src="/assets/img/bart.png"
-        alt="Bart Simpson"
-        width="200"
-        class="target"
-      />
-      <img src="/assets/img/sherlock.png" alt="Sherlock Holmes" width="200" />
-      <img
-        src="/assets/img/moriarty.png"
-        alt="Jim Moriarty"
-        width="200"
-        class="target"
-      />
-      <img src="/assets/img/walter.png" alt="Walter White" width="200" />
-      <img
-        src="/assets/img/breaking-bad.png"
-        alt="Breaking Bad"
-        width="200"
-        class="target"
-      />
-      <img src="/assets/img/michael.png" alt="Michael Scott" width="200" />
-      <img
-        src="/assets/img/holly.png"
-        alt="Holly Flax"
-        width="200"
-        class="target"
-      />
-      <img src="/assets/img/rick.png" alt="Rick Smith" width="200" />
-      <img
-        src="/assets/img/morty.png"
-        alt="Morty Smith"
-        width="200"
-        class="target"
-      />
+
+    <div id="page-2" class="page">
+      <h1 style="text-align: center; margin: 100px 0 30px 0;">
+        Pick your Avatar:
+      </h1>
+      <div class="flex-parent" id="image-group">
+        <div class="card">
+          <img src="/assets/img/homer.png" alt="Homer Simpson" width="200" />
+          <p class="name">Homer Simpson</p>
+          <p class="description">
+            As the family's provider, Homer works at the Springfield Nuclear
+            Power Plant as safety inspector. Homer embodies many American
+            working class stereotypes: he is obese, incompetent, lazy,
+            dim-witted, hot-tempered, addicted to beer, junk food and watching
+            television.
+          </p>
+        </div>
+        <div class="card">
+          <img src="/assets/img/marge.png" alt="Marge Simpson" width="200" />
+          <p class="name">Marge Simpson</p>
+          <p class="description">
+            Marge is the matriarch of the Simpson family. With her husband
+            Homer, she has three children: Bart, Lisa, and Maggie. Marge is the
+            moralistic force in her family and often provides a grounding voice
+            in the midst of her family's antics by trying to maintain order in
+            the Simpson household.
+          </p>
+        </div>
+        <div class="card">
+          <img src="/assets/img/bart.png" alt="Bart Simpson" width="200" />
+          <p class="name">Bart Simpson</p>
+          <p class="description">
+            Bart is the eldest child and only son of Homer and Marge, and the
+            brother of Lisa and Maggie. Bart's most prominent and popular
+            character traits are his mischievousness, rebelliousness and
+            disrespect for authority.
+          </p>
+        </div>
+        <div class="card">
+          <img src="/assets/img/lisa.png" alt="Lisa Simpson" width="200" />
+          <p class="name">Lisa Simpson</p>
+          <p class="description">
+            Intelligent, passionate, and the moral center of the family, Lisa
+            Simpson, is the second child of Homer and Marge, younger sister of
+            Bart, and older sister of Maggie. Lisa's high intellect and liberal
+            political stance creates a barrier between her and other children
+            her age, therefore she is a bit of a loner and social outcast.
+          </p>
+        </div>
+        <div class="card">
+          <img src="/assets/img/maggie.png" alt="Maggie Simpson" width="200" />
+          <p class="name">Maggie Simpson</p>
+          <p class="description">
+            Maggie is the youngest child of Homer and Marge, and sister to Bart
+            and Lisa. She is often seen sucking on her red pacifier and, when
+            she walks, she trips over her clothing and falls on her face. Being
+            an infant, she has not learned how to talk.
+          </p>
+        </div>
+
+        <button id="continueBtn" class="btn">Continue</button>
+      </div>
     </div>
+
+    <div id="page-3" class="page">
+      <div id="stat">
+        <div class="flex-parent">
+          <div>Level</div>
+          <div>Games Played</div>
+          <div>Best Time</div>
+          <div>Best Steps</div>
+        </div>
+        <div class="flex-parent">
+          <div>Level</div>
+          <div>Games Played</div>
+          <div>Best Time</div>
+          <div>Best Steps</div>
+        </div>
+        <div class="flex-parent">
+          <div>Level</div>
+          <div>Games Played</div>
+          <div>Best Time</div>
+          <div>Best Steps</div>
+        </div>
+      </div>
+
+      <div id="container">
+        <div
+          id="btn-group"
+          class="flex-parent"
+          style="justify-content: space-around"
+        >
+          <button class="btn btn-easy">Easy</button>
+          <button class="btn btn-medium">Medium</button>
+          <button class="btn btn-hard">Hard</button>
+        </div>
+        <canvas id="board" width="640" height="640"></canvas>
+
+        <img src="/assets/img/bart.png" alt="Bart Simpson" id="avatar" />
+      </div>
+    </div>
+
+    <div id="audio-controls">
+      <i class="fas fa-volume-mute volume" id="mute"></i>
+      <i class="fas fa-volume-up volume" id="play"></i>
+    </div>
+
+    <audio src="/assets/sounds/click.mp3" id="click"></audio>
+    <audio src="/assets/sounds/music.mp3" id="music" loop></audio>
+
+    <script src="https://kit.fontawesome.com/f02b2dce04.js"></script>
   </body>
 </html>
