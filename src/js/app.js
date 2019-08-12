@@ -6,19 +6,20 @@ import * as buttonView from "./views/buttonView";
 import renderPage from "./views/pageView";
 import elem from "./views/base";
 
-import player from "../js/img/bart.png";
-import target from "../js/img/donut.png";
+import target from "../js/assets/donut.png";
 
 let playerImg = new Image();
-playerImg.src = player;
 let targetImg = new Image();
 targetImg.src = target;
 
 const state = {
   maze: null,
   playerImg: playerImg,
-  targetImg: targetImg,
-  page: 1
+  targetImg: targetImg
+};
+
+const updatePlayerImage = src => {
+  state.playerImg.src = src;
 };
 
 const keyDir = {
@@ -28,29 +29,29 @@ const keyDir = {
   ArrowLeft: "w"
 };
 
-elem.btn.addEventListener("click", event => {
+elem.btnGroup.addEventListener("click", event => {
   let width, height;
-  if (event.target.classList.contains("btn-easy")) {
+  if (event.target === elem.easyBtn) {
     width = 8;
     height = 8;
   }
-  if (event.target.classList.contains("btn-medium")) {
+  if (event.target === elem.mediumBtn) {
     width = 16;
     height = 16;
   }
-  if (event.target.classList.contains("btn-hard")) {
+  if (event.target === elem.hardBtn) {
     width = 32;
     height = 32;
   }
   state.maze = new MazeBoard(width, height);
   state.maze.createMaze();
-  mazeView.renderMaze(state.maze, state.playerImg, state.targetImg);
+  mazeView.renderMaze(state);
 });
 
 elem.html.addEventListener("keyup", event => {
   if (!state.maze.gameOver) {
     state.maze.updatePlayer(keyDir[event.key]);
-    mazeView.renderMaze(state.maze);
+    mazeView.renderMaze(state);
   }
   if (
     state.maze.player.row === state.maze.target.row &&
@@ -76,19 +77,21 @@ for (let i = 0; i < elem.cardGroup.length; i++) {
   });
 
   elem.cardGroup[i].addEventListener("click", () => {
-    cardView.highlightCard(cardGroup[i]);
+    cardView.highlightCard(elem.cardGroup[i], updatePlayerImage);
+    elem.avatar.src = state.playerImg.src;
+    cardView.hideDescription(elem.cardGroup[i]);
   });
 }
 
-html.addEventListener("click", event => {
-  if (event.target.classList.value.includes("btn")) {
+elem.html.addEventListener("click", event => {
+  if (Array.from(elem.btnList).includes(event.target)) {
     buttonView.buttonClick(event.target);
     if (event.target.id !== elem.btn2.id) renderPage(event.target.id);
   }
 });
 
 elem.btn2.addEventListener("click", () => {
-  if (state.playerImg) renderPage(elem.btn2.id);
+  if (state.playerImg.src) renderPage(elem.btn2.id);
   else alert("Please choose an avatar!");
 });
 

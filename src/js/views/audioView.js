@@ -1,20 +1,21 @@
 import elem from "./base";
+import music from "../assets/music.mp3";
 
-const mute = elem.mute;
-const play = elem.play;
-const music = elem.music;
+const bgMusic = new Audio();
+bgMusic.src = music;
+bgMusic.loop = true;
 
 export const muteAudio = () => {
-  mute.style.display = "none";
-  play.style.display = "block";
-  music.volume = 0;
-  music.pause();
-  music.currentTime = 0;
+  elem.mute.style.display = "none";
+  elem.play.style.display = "block";
+  bgMusic.volume = 0;
+  bgMusic.pause();
+  bgMusic.currentTime = 0;
 };
 
 export const playAudio = () => {
-  play.style.display = "none";
-  mute.style.display = "block";
-  music.volume = 0.3;
-  music.play();
+  elem.play.style.display = "none";
+  elem.mute.style.display = "block";
+  bgMusic.volume = 0.3;
+  bgMusic.play();
 };
