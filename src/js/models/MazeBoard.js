@@ -8,10 +8,12 @@ class MazeBoard {
     this.width = width;
     this.height = height;
     this.gameOver = false;
+    // Assigning the starting position
     this.player = {
       row: this.height - 1,
       col: randomInt(this.width)
     };
+    // Assigning the target position
     this.target = {
       row: 0,
       col: randomInt(this.width)
@@ -51,18 +53,25 @@ class MazeBoard {
   createMaze = () => {
     while (this.stack.length) {
       const { row, col } = this.stack[this.stack.length - 1];
+      // Mark the current cell as visited
       this.board[row][col].visited = true;
+      // Check for unvisited neighbours
       const validDirections = this.calculateNeighbours(row, col);
+      // Pop the cell if no unvisited neighbours
       if (!validDirections.length) this.stack.pop();
       else {
+        // Choose a random unvisited neighbour
         const nextCell = validDirections[randomInt(validDirections.length)];
+        // Mark the path to that cell
         this.board[row][col][nextCell] = true;
         switch (nextCell) {
+          // Push the next cell onto stack
           case "n":
             this.stack.push({
               row: row - 1,
               col
             });
+            // Mark the path from the next cell back to current cell
             this.board[row - 1][col].s = true;
             break;
           case "s":
@@ -105,6 +114,11 @@ class MazeBoard {
         case "w":
           this.player.col -= 1;
       }
+      if (
+        this.player.row === this.target.row &&
+        this.player.col === this.target.col
+      )
+        this.gameOver = true;
     }
   };
 }

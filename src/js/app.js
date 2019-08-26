@@ -40,8 +40,8 @@ elem.btnGroup.addEventListener("click", event => {
     height = 16;
   }
   if (event.target === elem.hardBtn) {
-    width = 32;
-    height = 32;
+    width = 24;
+    height = 24;
   }
   state.maze = new MazeBoard(width, height);
   state.maze.createMaze();
@@ -52,18 +52,12 @@ elem.html.addEventListener("keyup", event => {
   if (!state.maze.gameOver) {
     state.maze.updatePlayer(keyDir[event.key]);
     mazeView.renderMaze(state);
-  }
-  if (
-    state.maze.player.row === state.maze.target.row &&
-    state.maze.player.col === state.maze.target.col
-  ) {
-    state.maze.gameOver = true;
-    alert("Congratulations");
+    if (state.maze.gameOver) alert("Congratulations!");
   }
 });
 
 elem.audio.addEventListener("click", event => {
-  if (event.target === elem.mute) audioView.muteAudio();
+  if (event.target !== elem.mute) audioView.muteAudio();
   else audioView.playAudio();
 });
 
@@ -95,5 +89,4 @@ elem.btn2.addEventListener("click", () => {
   else alert("Please choose an avatar!");
 });
 
-// window.onload = music.play();
-// music.volume = 0.3;
+window.onload = audioView.playAudio();
