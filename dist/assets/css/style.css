@@ -32,7 +32,7 @@ body {
 
 .flex-parent #background-image {
   height: 100vh;
-  background: url("/assets/img/background1.png");
+  background: url("/background.png");
   width: 50%;
 }
 

@@ -6,7 +6,7 @@ import * as buttonView from "./views/buttonView";
 import renderPage from "./views/pageView";
 import elem from "./views/base";
 
-import target from "../js/assets/donut.png";
+import target from "../js/assets/img/donut.png";
 
 let playerImg = new Image();
 let targetImg = new Image();
@@ -28,6 +28,8 @@ const keyDir = {
   ArrowRight: "e",
   ArrowLeft: "w"
 };
+
+(() => cardView.showCards())();
 
 elem.btnGroup.addEventListener("click", event => {
   let width, height;
@@ -89,4 +91,4 @@ elem.btn2.addEventListener("click", () => {
   else alert("Please choose an avatar!");
 });
 
-window.onload = audioView.playAudio();
+// window.onload = audioView.playAudio();

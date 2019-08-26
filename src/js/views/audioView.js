@@ -1,5 +1,5 @@
 import elem from "./base";
-import music from "../assets/music.mp3";
+import music from "../assets/audio/music.mp3";
 
 const bgMusic = new Audio();
 bgMusic.src = music;

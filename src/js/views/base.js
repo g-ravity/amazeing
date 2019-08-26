@@ -6,6 +6,7 @@ const elem = {
   audio: document.getElementById("audio-controls"),
   mute: document.getElementById("mute"),
   play: document.getElementById("play"),
+  imgGroup: document.getElementById("image-group"),
   cardGroup: document.getElementsByClassName("card"),
   btn1: document.getElementById("playBtn"),
   btn2: document.getElementById("continueBtn"),

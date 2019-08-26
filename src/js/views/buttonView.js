@@ -1,4 +1,4 @@
-import click from "../assets/click.mp3";
+import click from "../assets/audio/click.mp3";
 
 const clickSound = new Audio();
 clickSound.src = click;
