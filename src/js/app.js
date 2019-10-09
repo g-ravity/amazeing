@@ -74,7 +74,7 @@ elem.html.addEventListener("keyup", event => {
 });
 
 elem.audio.addEventListener("click", event => {
-  if (event.target !== elem.mute) audioView.muteAudio();
+  if (event.target === elem.mute) audioView.muteAudio();
   else audioView.playAudio();
 });
 
@@ -97,6 +97,7 @@ for (let i = 0; i < elem.cardGroup.length; i++) {
 elem.html.addEventListener("click", event => {
   if (Array.from(elem.btnList).includes(event.target)) {
     buttonView.buttonClick(event.target);
+    if (event.target.id === elem.btn1.id) audioView.playAudio();
     if (event.target.id !== elem.btn2.id) renderPage(event.target.id);
   }
 });
