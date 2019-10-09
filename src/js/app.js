@@ -20,7 +20,7 @@ const state = {
 };
 
 const updatePlayerImage = src => {
-  state.playerImg.src = src;
+  state.playerImg = {...state.playerImg, src};
 };
 
 const keyDir = {
@@ -73,10 +73,18 @@ for (let i = 0; i < elem.cardGroup.length; i++) {
     cardView.hideDescription(event.target);
   });
 
-  elem.cardGroup[i].addEventListener("click", () => {
-    cardView.highlightCard(elem.cardGroup[i], updatePlayerImage);
-    elem.avatar.src = state.playerImg.src;
-    cardView.hideDescription(elem.cardGroup[i]);
+  elem.cardGroup[i].addEventListener("click", e => {
+    let classCheck = e.target.parentElement.classList;
+    if(classCheck.contains("current")){
+      cardView.lowlightCard(updatePlayerImage);
+      elem.avatar.src = state.playerImg.src;
+      cardView.hideDescription(elem.cardGroup[i]);
+    }
+    else{
+      cardView.highlightCard(elem.cardGroup[i], updatePlayerImage);
+      elem.avatar.src = state.playerImg.src;
+      cardView.hideDescription(elem.cardGroup[i]);
+    }
   });
 }
 

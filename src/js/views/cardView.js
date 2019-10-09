@@ -55,6 +55,12 @@ export const highlightCard = (card, updateImage) => {
   updateImage(card.children[0].src);
 };
 
+export const lowlightCard = updateImage => {
+  for (let i = 0; i < elem.cardGroup.length; i++)
+    elem.cardGroup[i].classList.remove("current");
+  updateImage("");
+};
+
 export const showCards = () => {
   cards.forEach(cur =>
     elem.imgGroup.insertAdjacentHTML(
