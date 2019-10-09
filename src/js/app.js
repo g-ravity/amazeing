@@ -66,7 +66,10 @@ elem.audio.addEventListener("click", event => {
 
 for (let i = 0; i < elem.cardGroup.length; i++) {
   elem.cardGroup[i].addEventListener("mouseenter", event => {
-    cardView.showDescription(event.target);
+    let classCheck = event.target.classList;
+    if(!classCheck.contains("current")){
+      cardView.showDescription(event.target);
+    }
   });
 
   elem.cardGroup[i].addEventListener("mouseleave", event => {
