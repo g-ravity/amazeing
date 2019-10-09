@@ -1,7 +1,8 @@
 const elem = {
   btnList: document.getElementsByClassName("btn"),
   btnGroup: document.getElementById("btn-group"),
-  canvas: document.getElementById("board"),
+  boardCanvas: document.getElementById("board"),
+  playerCanvas: document.getElementById("player"),
   html: document.getElementsByTagName("html")[0],
   audio: document.getElementById("audio-controls"),
   mute: document.getElementById("mute"),
@@ -16,7 +17,11 @@ const elem = {
   easyBtn: document.getElementById("btn-easy"),
   mediumBtn: document.getElementById("btn-medium"),
   hardBtn: document.getElementById("btn-hard"),
-  avatar: document.getElementById("avatar")
+  avatar: document.getElementById("avatar"),
+  modal: document.querySelector(".modal"),
+  modalBtn: document.querySelector(".modal_btn"),
+  stepCounter: document.querySelector("#counter #step span"),
+  timeCounter: document.querySelector("#counter #time span")
 };
 
 export default elem;
