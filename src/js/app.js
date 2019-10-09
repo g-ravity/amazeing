@@ -91,4 +91,4 @@ elem.btn2.addEventListener("click", () => {
   else alert("Please choose an avatar!");
 });
 
-// window.onload = audioView.playAudio();
+window.onload = audioView.playAudio();
