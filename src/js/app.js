@@ -30,32 +30,46 @@ const keyDir = {
   ArrowLeft: "w"
 };
 
+let timer = null;
+
 (() => cardView.showCards())();
 
 elem.btnGroup.addEventListener("click", event => {
   let width, height;
-  if (event.target === elem.easyBtn) {
-    width = 8;
-    height = 8;
-  }
-  if (event.target === elem.mediumBtn) {
-    width = 16;
-    height = 16;
-  }
-  if (event.target === elem.hardBtn) {
-    width = 24;
-    height = 24;
-  }
+  if (event.target === elem.easyBtn) width = 8;
+  if (event.target === elem.mediumBtn) width = 16;
+  if (event.target === elem.hardBtn) width = 24;
   state.maze = new MazeBoard(width, height);
   state.maze.createMaze();
   mazeView.renderMaze(state);
+  clearInterval(timer);
+  elem.timeCounter.innerHTML = 0;
+  elem.stepCounter.innerHTML = 0;
+  timer = setInterval(
+    () => (elem.timeCounter.innerHTML = Number(elem.timeCounter.innerHTML) + 1),
+    1000
+  );
 });
 
 elem.html.addEventListener("keyup", event => {
-  if (!state.maze.gameOver) {
-    state.maze.updatePlayer(keyDir[event.key]);
-    mazeView.renderMaze(state);
-    if (state.maze.gameOver) alert("Congratulations!");
+  const { maze } = state;
+  const dir = keyDir[event.key];
+  if (!maze.gameOver && maze.board[maze.player.row][maze.player.col][dir]) {
+    const prevRow = maze.player.row;
+    const prevCol = maze.player.col;
+    maze.updatePlayer(dir);
+    elem.stepCounter.innerHTML = Number(elem.stepCounter.innerHTML) + 1;
+    mazeView.updatePlayerImg(
+      prevRow,
+      prevCol,
+      maze.player.row,
+      maze.player.col,
+      state.playerImg
+    );
+    if (maze.gameOver) {
+      clearInterval(timer);
+      alert("Congratulations!");
+    }
   }
 });
 
@@ -89,11 +103,10 @@ elem.html.addEventListener("click", event => {
 
 elem.btn2.addEventListener("click", () => {
   if (state.playerImg.src) renderPage(elem.btn2.id);
-  else modalView.showModal()
+  else setTimeout(() => modalView.showModal(), 500);
 });
 
-elem.modalButton.addEventListener("click", () => {
-  modalView.hideModal()
+elem.modalBtn.addEventListener("click", () => {
+  buttonView.buttonClick(event.target);
+  setTimeout(() => modalView.hideModal(), 500);
 });
-
-window.onload = audioView.playAudio();

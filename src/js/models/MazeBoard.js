@@ -4,13 +4,12 @@ const randomInt = val => {
 };
 
 class MazeBoard {
-  constructor(width, height) {
+  constructor(width) {
     this.width = width;
-    this.height = height;
     this.gameOver = false;
     // Assigning the starting position
     this.player = {
-      row: this.height - 1,
+      row: this.width - 1,
       col: randomInt(this.width)
     };
     // Assigning the target position
@@ -20,13 +19,13 @@ class MazeBoard {
     };
     this.stack = [
       {
-        row: randomInt(height),
+        row: randomInt(width),
         col: randomInt(width)
       }
     ];
 
     this.board = [];
-    for (let i = 0; i < this.height; i++) {
+    for (let i = 0; i < this.width; i++) {
       this.board.push([]);
       for (let j = 0; j < this.width; j++)
         this.board[i].push({
@@ -42,10 +41,10 @@ class MazeBoard {
   calculateNeighbours = (row, col) => {
     let direction = "";
     if (row > 0 && !this.board[row - 1][col].visited) direction += "n";
-    if (row < this.height - 1 && !this.board[row + 1][col].visited)
+    if (row < this.width - 1 && !this.board[row + 1][col].visited)
       direction += "s";
     if (col > 0 && !this.board[row][col - 1].visited) direction += "w";
-    if (col < this.height - 1 && !this.board[row][col + 1].visited)
+    if (col < this.width - 1 && !this.board[row][col + 1].visited)
       direction += "e";
     return direction;
   };
@@ -100,26 +99,24 @@ class MazeBoard {
   };
 
   updatePlayer = dir => {
-    if (this.board[this.player.row][this.player.col][dir]) {
-      switch (dir) {
-        case "n":
-          this.player.row -= 1;
-          break;
-        case "s":
-          this.player.row += 1;
-          break;
-        case "e":
-          this.player.col += 1;
-          break;
-        case "w":
-          this.player.col -= 1;
-      }
-      if (
-        this.player.row === this.target.row &&
-        this.player.col === this.target.col
-      )
-        this.gameOver = true;
+    switch (dir) {
+      case "n":
+        this.player.row -= 1;
+        break;
+      case "s":
+        this.player.row += 1;
+        break;
+      case "e":
+        this.player.col += 1;
+        break;
+      case "w":
+        this.player.col -= 1;
     }
+    if (
+      this.player.row === this.target.row &&
+      this.player.col === this.target.col
+    )
+      this.gameOver = true;
   };
 }
 
