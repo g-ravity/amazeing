@@ -188,3 +188,45 @@ i.fa-volume-up {
   font-size: 1.5rem;
   margin-bottom: 20px;
 }
+
+/* Animations */
+
+@keyframes fadeInUp{
+  0%{
+    top: 100%;
+    opacity: 0;
+  }
+  100%{
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutDown{
+  0%{
+    top: 0;
+    opacity: 1;
+  }
+  100%{
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
