@@ -3,6 +3,7 @@ import * as mazeView from "./views/mazeView";
 import * as audioView from "./views/audioView";
 import * as cardView from "./views/cardView";
 import * as buttonView from "./views/buttonView";
+import * as modalView from "./views/modalView";
 import renderPage from "./views/pageView";
 import elem from "./views/base";
 
@@ -88,7 +89,11 @@ elem.html.addEventListener("click", event => {
 
 elem.btn2.addEventListener("click", () => {
   if (state.playerImg.src) renderPage(elem.btn2.id);
-  else alert("Please choose an avatar!");
+  else modalView.showModal()
+});
+
+elem.modalButton.addEventListener("click", () => {
+  modalView.hideModal()
 });
 
 window.onload = audioView.playAudio();

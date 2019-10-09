@@ -16,7 +16,9 @@ const elem = {
   easyBtn: document.getElementById("btn-easy"),
   mediumBtn: document.getElementById("btn-medium"),
   hardBtn: document.getElementById("btn-hard"),
-  avatar: document.getElementById("avatar")
+  avatar: document.getElementById("avatar"),
+  modal: document.querySelector(".modal"),
+  modalButton: document.querySelector(".modal_btn")
 };
 
 export default elem;
