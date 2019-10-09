@@ -28,7 +28,9 @@
     <div id="page-2" class="page">
       <div class="modal flex-center">
         <div class="modal_box flex-center">
-          <div class="modal_content">Please Select An Avatar<br>To Continue</div>
+          <div class="modal_content">
+            Please Select An Avatar<br />To Continue
+          </div>
           <button class="modal_btn btn">OK</button>
         </div>
       </div>
@@ -40,27 +42,6 @@
     </div>
 
     <div id="page-3" class="page">
-      <div id="stat">
-        <div class="flex-parent">
-          <div>Level</div>
-          <div>Games Played</div>
-          <div>Best Time</div>
-          <div>Best Steps</div>
-        </div>
-        <div class="flex-parent">
-          <div>Level</div>
-          <div>Games Played</div>
-          <div>Best Time</div>
-          <div>Best Steps</div>
-        </div>
-        <div class="flex-parent">
-          <div>Level</div>
-          <div>Games Played</div>
-          <div>Best Time</div>
-          <div>Best Steps</div>
-        </div>
-      </div>
-
       <div id="container">
         <div
           id="btn-group"
@@ -71,9 +52,21 @@
           <button class="btn" id="btn-medium">Medium</button>
           <button class="btn" id="btn-hard">Hard</button>
         </div>
-        <canvas id="board" width="640" height="640"></canvas>
+        <div id="canvas-container">
+          <canvas id="board" width="640" height="640"></canvas>
+          <canvas id="player" width="640" height="640"></canvas>
+        </div>
 
         <img src="" id="avatar" />
+      </div>
+
+      <div id="counter">
+        <div id="step">
+          <p>Steps: <span>0</span></p>
+        </div>
+        <div id="time">
+          <p>Seconds: <span>0</span></p>
+        </div>
       </div>
     </div>
 
