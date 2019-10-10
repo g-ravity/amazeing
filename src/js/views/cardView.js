@@ -40,30 +40,26 @@ const cards = [
 ];
 
 export const showDescription = card => {
-  console.log(card.children[0])
-  card.children[0].style.animation = "fadeOut 0.3s linear forwards";
-  card.children[1].style.animation = "fadeOut 0.3s linear forwards";
-  card.children[2].style.animation = "fadeInUp 0.5s linear 0.3s forwards";
+  card.children[0].style.animation = "fadeOut 0.2s ease-in-out forwards";
+  card.children[1].style.animation = "fadeOut 0.2s ease-in-out forwards";
+  card.children[2].style.animation = "fadeInUp 0.3s ease-in-out 0.3s forwards";
 };
 
 export const hideDescription = card => {
-  card.children[0].style.animation = "fadeIn 0.3s linear forwards";
-  card.children[1].style.animation = "fadeIn 0.3s linear forwards";
-  card.children[2].style.animation = "fadeOutDown 0.5s linear forwards";
+  card.children[0].style.animation = "fadeIn 0.2s ease-in-out forwards";
+  card.children[1].style.animation = "fadeIn 0.2s ease-in-out forwards";
+  card.children[2].style.animation = "fadeOutDown 0.3s ease-in-out forwards";
 };
 
-export const highlightCard = (card, updateImage) => {
+export const highlightCard = card => {
   for (let i = 0; i < elem.cardGroup.length; i++)
     elem.cardGroup[i].classList.remove("current");
 
   card.classList.add("current");
-  updateImage(card.children[0].src);
 };
 
-export const lowlightCard = updateImage => {
-  for (let i = 0; i < elem.cardGroup.length; i++)
-    elem.cardGroup[i].classList.remove("current");
-  updateImage("");
+export const lowlightCard = card => {
+  card.classList.remove("current");
 };
 
 export const showCards = () => {

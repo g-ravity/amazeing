@@ -19,10 +19,6 @@ const state = {
   targetImg: targetImg
 };
 
-const updatePlayerImage = src => {
-  state.playerImg = {...state.playerImg, src};
-};
-
 const keyDir = {
   ArrowUp: "n",
   ArrowDown: "s",
@@ -81,7 +77,7 @@ elem.audio.addEventListener("click", event => {
 for (let i = 0; i < elem.cardGroup.length; i++) {
   elem.cardGroup[i].addEventListener("mouseenter", event => {
     let classCheck = event.target.classList;
-    if(!classCheck.contains("current")){
+    if (!classCheck.contains("current")) {
       cardView.showDescription(event.target);
     }
   });
@@ -92,16 +88,15 @@ for (let i = 0; i < elem.cardGroup.length; i++) {
 
   elem.cardGroup[i].addEventListener("click", e => {
     let classCheck = e.target.parentElement.classList;
-    if(classCheck.contains("current")){
-      cardView.lowlightCard(updatePlayerImage);
-      elem.avatar.src = state.playerImg.src;
-      cardView.hideDescription(elem.cardGroup[i]);
+    if (classCheck.contains("current")) {
+      cardView.lowlightCard(elem.cardGroup[i]);
+      state.playerImg.removeAttribute("src");
+    } else {
+      cardView.highlightCard(elem.cardGroup[i]);
+      state.playerImg.src = elem.cardGroup[i].children[0].src;
     }
-    else{
-      cardView.highlightCard(elem.cardGroup[i], updatePlayerImage);
-      elem.avatar.src = state.playerImg.src;
-      cardView.hideDescription(elem.cardGroup[i]);
-    }
+    elem.avatar.src = state.playerImg.src;
+    cardView.hideDescription(elem.cardGroup[i]);
   });
 }
 
