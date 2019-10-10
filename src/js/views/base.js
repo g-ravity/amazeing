@@ -20,6 +20,10 @@ const elem = {
   avatar: document.getElementById("avatar"),
   modal: document.querySelector(".modal"),
   modalBtn: document.querySelector(".modal_btn"),
+  winningScreen: document.getElementById("winning-screen"),
+  winningText: document.getElementById("winning-text"),
+  counter: document.getElementById("counter"),
+  counterText: document.querySelectorAll("#counter p"),
   stepCounter: document.querySelector("#counter #step span"),
   timeCounter: document.querySelector("#counter #time span")
 };
