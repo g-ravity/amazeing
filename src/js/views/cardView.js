@@ -40,11 +40,16 @@ const cards = [
 ];
 
 export const showDescription = card => {
-  card.children[2].style.top = "0";
+  console.log(card.children[0])
+  card.children[0].style.animation = "fadeOut 0.3s linear forwards";
+  card.children[1].style.animation = "fadeOut 0.3s linear forwards";
+  card.children[2].style.animation = "fadeInUp 0.5s linear 0.3s forwards";
 };
 
 export const hideDescription = card => {
-  card.children[2].style.top = "100%";
+  card.children[0].style.animation = "fadeIn 0.3s linear forwards";
+  card.children[1].style.animation = "fadeIn 0.3s linear forwards";
+  card.children[2].style.animation = "fadeOutDown 0.5s linear forwards";
 };
 
 export const highlightCard = (card, updateImage) => {
@@ -53,6 +58,12 @@ export const highlightCard = (card, updateImage) => {
 
   card.classList.add("current");
   updateImage(card.children[0].src);
+};
+
+export const lowlightCard = updateImage => {
+  for (let i = 0; i < elem.cardGroup.length; i++)
+    elem.cardGroup[i].classList.remove("current");
+  updateImage("");
 };
 
 export const showCards = () => {
