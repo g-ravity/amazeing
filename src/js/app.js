@@ -30,14 +30,7 @@ let timer = null;
 
 (() => cardView.showCards())();
 
-elem.btnGroup.addEventListener("click", event => {
-  let width, height;
-  if (event.target === elem.easyBtn) width = 8;
-  if (event.target === elem.mediumBtn) width = 16;
-  if (event.target === elem.hardBtn) width = 24;
-  state.maze = new MazeBoard(width, height);
-  state.maze.createMaze();
-  mazeView.renderMaze(state);
+const resetGame = () => {
   clearInterval(timer);
   elem.timeCounter.innerHTML = 0;
   elem.stepCounter.innerHTML = 0;
@@ -45,6 +38,24 @@ elem.btnGroup.addEventListener("click", event => {
     () => (elem.timeCounter.innerHTML = Number(elem.timeCounter.innerHTML) + 1),
     1000
   );
+  if (state.maze && state.maze.gameOver) {
+    elem.winningScreen.style.backgroundColor = "rgba(0,0,0,0)";
+    elem.winningText.style.animation = "fadeOut 0.2s ease-in-out forwards";
+    elem.counter.style.animation = "slideOut 0.2s ease-in-out forwards";
+    elem.counterText.forEach(cur => (cur.style.color = "#636363"));
+  }
+};
+
+elem.btnGroup.addEventListener("click", event => {
+  resetGame();
+
+  let width, height;
+  if (event.target === elem.easyBtn) width = 8;
+  if (event.target === elem.mediumBtn) width = 16;
+  if (event.target === elem.hardBtn) width = 24;
+  state.maze = new MazeBoard(width, height);
+  state.maze.createMaze();
+  mazeView.renderMaze(state);
 });
 
 elem.html.addEventListener("keyup", event => {
@@ -64,7 +75,10 @@ elem.html.addEventListener("keyup", event => {
     );
     if (maze.gameOver) {
       clearInterval(timer);
-      alert("Congratulations!");
+      elem.winningScreen.style.backgroundColor = "rgba(0,0,0,0.5)";
+      elem.winningText.style.animation = "fadeIn .2s ease-in-out forwards";
+      elem.counter.style.animation = "slideIn .2s ease-in-out forwards";
+      elem.counterText.forEach(cur => (cur.style.color = "#ffffff"));
     }
   }
 });

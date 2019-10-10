@@ -48,6 +48,8 @@ body {
   margin: 5px;
 }
 
+/* Buttons */
+
 button {
   background: none;
   border: none;
@@ -76,6 +78,8 @@ button:focus {
   margin-left: -65px;
 }
 
+/* Audio */
+
 i.volume {
   color: #000;
   cursor: pointer;
@@ -88,6 +92,8 @@ i.volume {
 i.fa-volume-mute {
   display: none;
 }
+
+/* Card */
 
 .card {
   cursor: pointer;
@@ -133,6 +139,8 @@ i.fa-volume-mute {
   background: #fff480;
 }
 
+/* Board */
+
 #container {
   margin: 40px auto;
   width: 640px;
@@ -158,6 +166,40 @@ i.fa-volume-mute {
   bottom: 10px;
   right: 10px;
   width: 200px;
+}
+
+#winning-screen {
+  width: 640px;
+  height: 640px;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.2s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#winning-text {
+  position: absolute;
+  opacity: 0;
+  color: #fbfad3;
+  font-size: 3rem;
+  left: 50%;
+  top: 100px;
+  transform: translate(-50%, 0);
+  text-transform: uppercase;
+}
+
+#counter {
+  font-size: 2.2rem;
+  position: absolute;
+  top: 0;
+  left: -300px;
+}
+
+#counter p {
+  color: #636363;
+  margin: 20px 0;
+  transition: color 0.2s ease-in-out;
 }
 
 /* Modal */
@@ -195,56 +237,70 @@ i.fa-volume-mute {
   line-height: 2.2rem;
 }
 
-#counter {
-  font-size: 2.2rem;
-  position: absolute;
-  top: 80px;
-  left: 80px;
-}
-
-#counter p {
-  color: #636363;
-  margin: 20px 0;
-}
-
 /* Animations */
 
-@keyframes fadeInUp{
-  0%{
+@keyframes fadeInUp {
+  0% {
     top: 100%;
     opacity: 0;
   }
-  100%{
+  100% {
     top: 0;
     opacity: 1;
   }
 }
 
-@keyframes fadeOutDown{
-  0%{
+@keyframes fadeOutDown {
+  0% {
     top: 0;
     opacity: 1;
   }
-  100%{
+  100% {
     top: 100%;
     opacity: 0;
   }
 }
 
-@keyframes fadeOut{
-  0%{
+@keyframes fadeOut {
+  0% {
     opacity: 1;
   }
-  100%{
+  100% {
     opacity: 0;
   }
 }
 
-@keyframes fadeIn{
-  0%{
+@keyframes fadeIn {
+  0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    top: 0;
+    left: -300px;
+    transform: translate(0, 0);
+  }
+  100% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 0;
+    left: -300px;
+    transform: translate(0, 0);
   }
 }
