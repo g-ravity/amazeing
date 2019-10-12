@@ -16,6 +16,9 @@ const renderPage = id => {
     setTimeout(() => {
       buttonPageMap[id].cur.classList.remove("current-page");
       buttonPageMap[id].next.classList.add("current-page");
+      setTimeout(() => {
+        buttonPageMap[id].cur.classList.add("hide");
+      }, 500);
     }, 500);
   }
 };
