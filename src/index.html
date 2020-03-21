@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
   <body>
-    <div id="page-1" class="page current-page">
+    <div id="page-1" class="page">
       <div class="flex-parent">
         <div id="heading">
           a<span style="color:#e82525">MAZE</span>ing
@@ -21,7 +21,6 @@
         </div>
         <div id="background-image"></div>
       </div>
-
       <button id="playBtn" class="btn">Play!</button>
     </div>
 
@@ -67,7 +66,54 @@
             </div>
           </div>
         </div>
+        <button id="statBtn" class="btn">Statistics</button>
         <img src="" id="avatar" />
+      </div>
+    </div>
+
+    <div id="page-4" class="page current-page">
+      <div id="stat-board">
+        <div id="levels">
+          <div class="current-level level-name">
+            <div class="btn-background"></div>
+            <p>Easy</p>
+          </div>
+          <div class="level-name">
+            <div class="btn-background"></div>
+            <p>Medium</p>
+          </div>
+          <div class="level-name">
+            <div class="btn-background"></div>
+            <p>Hard</p>
+          </div>
+        </div>
+        <p id="stat-header">Your Vital Stats</p>
+        <div id="stat-container">
+          <div>
+            <p id="games-played">0</p>
+            <p>Games Played</p>
+          </div>
+          <hr />
+          <div>
+            <p id="games-completed">100</p>
+            <p>Games Completed</p>
+          </div>
+          <hr />
+          <div>
+            <p id="best-steps">0</p>
+            <p>Best Steps</p>
+          </div>
+          <hr />
+          <div>
+            <p id="best-seconds">0</p>
+            <p>Best Seconds</p>
+          </div>
+          <hr />
+          <div>
+            <p id="total-seconds">0</p>
+            <p>Total Seconds</p>
+          </div>
+        </div>
       </div>
     </div>
 

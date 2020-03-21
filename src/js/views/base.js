@@ -25,7 +25,9 @@ const elem = {
   counter: document.getElementById("counter"),
   counterText: document.querySelectorAll("#counter p"),
   stepCounter: document.querySelector("#counter #step span"),
-  timeCounter: document.querySelector("#counter #time span")
+  timeCounter: document.querySelector("#counter #time span"),
+  levelContainer: document.getElementById("levels"),
+  statContainer: document.getElementById("stat-container")
 };
 
 export default elem;
