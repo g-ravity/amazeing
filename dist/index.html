@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>aMAZEing - The Maze Game</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="/icon.png" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+  </head>
+  <body>
+    <div id="page-1" class="page current-page">
+      <div class="flex-parent">
+        <div id="heading">
+          a<span style="color:#e82525">MAZE</span>ing
+          <p id="subheading">The Maze Game</p>
+        </div>
+        <div id="background-image"></div>
+      </div>
+
+      <button id="playBtn" class="btn">Play!</button>
+    </div>
+
+    <div id="page-2" class="page">
+      <div class="modal flex-center">
+        <div class="modal_box flex-center">
+          <div class="modal_content">
+            Please Select An Avatar<br />To Continue
+          </div>
+          <button class="modal_btn btn">OK</button>
+        </div>
+      </div>
+      <h1 style="text-align: center; margin: 100px 0 30px 0;">
+        Pick your Avatar:
+      </h1>
+      <div class="flex-parent" id="image-group"></div>
+      <button id="continueBtn" class="btn">Continue</button>
+    </div>
+
+    <div id="page-3" class="page">
+      <div id="container">
+        <div
+          id="btn-group"
+          class="flex-parent"
+          style="justify-content: space-around"
+        >
+          <button class="btn" id="btn-easy">Easy</button>
+          <button class="btn" id="btn-medium">Medium</button>
+          <button class="btn" id="btn-hard">Hard</button>
+        </div>
+        <div id="canvas-container">
+          <canvas id="board" width="640" height="640"></canvas>
+          <canvas id="player" width="640" height="640"></canvas>
+          <div id="winning-screen">
+            <p id="winning-text">Congratulations!</p>
+            <div id="counter">
+              <div id="step">
+                <p>Steps: <span>0</span></p>
+              </div>
+              <div id="time">
+                <p>Seconds: <span>0</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img src="" id="avatar" />
+      </div>
+    </div>
+
+    <div id="audio-controls">
+      <i class="fas fa-volume-mute volume" id="mute"></i>
+      <i class="fas fa-volume-up volume" id="play"></i>
+    </div>
+
+    <script src="https://kit.fontawesome.com/f02b2dce04.js"></script>
+  <script type="text/javascript" src="js/bundle.js"></script></body>
+</html>
