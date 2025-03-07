@@ -27,34 +27,48 @@ const { title } = Astro.props;
 
 <style is:global>
   :root {
-    --accent: 124, 58, 237;
-    --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-  }
-  
-  html {
-	font-family: "Fredoka One", cursive;
-    background-color: #fbfad3;
-	color: #729d39;
-  }
-  
-  .cell {
-    position: relative;
-    background-color: white;
-    border: 1px solid transparent;
-  }
-  
-  .n-wall { border-top: 2px solid #333; }
-  .s-wall { border-bottom: 2px solid #333; }
-  .e-wall { border-right: 2px solid #333; }
-  .w-wall { border-left: 2px solid #333; }
-  
-  .player-img, .target-img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
-  }
+  --accent: 124, 58, 237;
+  --accent-gradient: linear-gradient(
+    45deg,
+    rgb(var(--accent)),
+    #da62c4 30%,
+    white 60%
+  );
+}
+
+html {
+  font-family: "Fredoka One", cursive;
+  background-color: #fbfad3;
+  color: #729d39;
+}
+
+.cell {
+  position: relative;
+  background-color: white;
+  border: 1px solid transparent;
+}
+
+.n-wall {
+  border-top: 2px solid #333;
+}
+.s-wall {
+  border-bottom: 2px solid #333;
+}
+.e-wall {
+  border-right: 2px solid #333;
+}
+.w-wall {
+  border-left: 2px solid #333;
+}
+
+.player-img,
+.target-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
 </style>
