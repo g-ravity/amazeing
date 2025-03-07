@@ -1,11 +1,31 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation';
+import PageManager from '../components/PageManager';
+import AudioControl from '../components/AudioControl';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const characters = [
+  {
+    id: 'char1',
+    imgSrc: '/assets/lisa.png',
+    name: 'Lisa',
+    description: 'A brave adventurer ready to solve the maze.'
+  },
+  {
+    id: 'char2',
+    imgSrc: '/assets/maggie.png',
+    name: 'Maggie',
+    description: 'A cunning explorer with a keen sense of direction.'
+  }
+];
+
+const audioSrc = '/assets/music.mp3';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Amazeing - Maze Game">
+  <main>
+    <PageManager characters={characters} client:load />
+  </main>
+  
+  <AudioControl audioSrc={audioSrc} client:load />
 </Layout>
