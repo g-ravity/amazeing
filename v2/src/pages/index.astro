@@ -1,24 +1,157 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageManager from '../components/PageManager';
+import PageManager, { CharacterPacks } from '../components/PageManager';
 import AudioControl from '../components/AudioControl';
 
-const characters = [
-  {
-    id: 'char1',
-    imgSrc: '/assets/lisa.png',
-    name: 'Lisa',
-    description: 'A brave adventurer ready to solve the maze.'
+const characters = {
+  [CharacterPacks.Simpsons]: {
+    isLocked: false,
+    minXP: 0,
+    characters: [
+      {
+        id: 'Homer',
+        imgSrc: '/characters/simpsons/homer.png',
+        name: 'Homer',
+        description: "Homer Simpson, proving that donuts and ignorance are the true keys to happiness.",
+      },
+      {
+        id: 'Marge',
+        imgSrc: '/characters/simpsons/marge.png',
+        name: 'Marge',
+        description: "Marge Simpson, who keeps it all together with a blue hairdo and unending patience for Homer.",
+      },
+      {
+        id: 'Bart',
+        imgSrc: '/characters/simpsons/bart.png',
+        name: 'Bart',
+        description: "Bart Simpson, because what better way to say 'childhood' than mischief and a slingshot?",
+      },
+      {
+        id: 'Lisa',
+        imgSrc: '/characters/simpsons/lisa.png',
+        name: 'Lisa',
+        description: "Lisa Simpson, the voice of reason in a family that probably isn't listening.",
+      },
+      {
+        id: 'Maggie',
+        imgSrc: '/characters/simpsons/maggie.png',
+        name: 'Maggie',
+        description: "Maggie Simpson, silently judging everyone while still sucking on that pacifier.",
+      },
+    ]
   },
-  {
-    id: 'char2',
-    imgSrc: '/assets/maggie.png',
-    name: 'Maggie',
-    description: 'A cunning explorer with a keen sense of direction.'
-  }
-];
+  [CharacterPacks.FamilyGuy]: {
+    isLocked: true,
+    minXP: 200,
+    characters: [
+    {
+      id: 'Peter',
+      imgSrc: '/characters/familyGuy/peter.png',
+      name: 'Peter',
+      description: "Peter Griffin, the guy who proves that maturity and adulthood aren't always a package deal.",
+    },
+    {
+      id: 'Chris',
+      imgSrc: '/characters/familyGuy/chris.png',
+      name: 'Chris',
+      description: "Chris Griffin, living proof that the apple doesn't fall far from the very confused tree.",
+    },
+    {
+      id: 'Brian',
+      imgSrc: '/characters/familyGuy/brian.png',
+      name: 'Brian',
+      description: "Brian the dog, who somehow manages to be the smartest and most alcoholic member of the family.",
+    },
+    {
+      id: 'Stewie',
+      imgSrc: '/characters/familyGuy/stewie.png',
+      name: 'Stewie',
+      description: "Stewie Griffin, the only baby who dreams of world domination between nap times.",
+    },
+    {
+      id: 'Lois',
+      imgSrc: '/characters/familyGuy/lois.png',
+      name: 'Lois',
+      description: "Lois Griffin, holding the family together while wondering how her life turned into this sitcom.",
+    },
+  ]
+  },
+  [CharacterPacks.RickMorty]: {
+    isLocked: true,
+    minXP: 500,
+    characters: [
+      {
+        id: 'Jerry',
+        imgSrc: '/characters/rickMorty/jerry.png',
+        name: 'Jerry',
+        description: "Jerry, the universe's reminder that mediocrity can still be an adventure... sort of.",
+      },
+      {
+        id: 'Beth',
+        imgSrc: '/characters/rickMorty/beth.png',
+        name: 'Beth',
+        description: "Beth, the brilliant horse surgeon who still somehow needs validation from a drunk scientist dad.",
+      },
+      {
+        id: 'Summer',
+        imgSrc: '/characters/rickMorty/summer.png',
+        name: 'Summer',
+        description: "Summer, the teenager who handles interdimensional chaos like most handle high school drama.",
+      },
+      {
+        id: 'Rick',
+        imgSrc: '/characters/rickMorty/rick.png',
+        name: 'Rick',
+        description: "Rick, the smartest man in the universe, which is convenient when you're also the drunkest.",
+      },
+      {
+        id: 'Morty',
+        imgSrc: '/characters/rickMorty/morty.png',
+        name: 'Morty',
+        description: "Morty, proving that a terrified squeal is the best reaction to most of Rick's ideas.",
+      },
+    ]
+  },
+  [CharacterPacks.Naruto]: {
+    isLocked: true,
+    minXP: 1000,
+    characters: [
+    {
+      id: 'Sasuke',
+      imgSrc: '/characters/naruto/sasuke.png',
+      name: 'Sasuke',
+      description: "Sasuke, the guy who left his village for revenge but mostly just developed an edgy personality.",
+    },
+    {
+      id: 'Kakashi',
+      imgSrc: '/characters/naruto/kakashi.png',
+      name: 'Kakashi',
+      description: "Kakashi, the teacher who believes a face mask and being perpetually late are personality traits.",
+    },
+    {
+      id: 'Naruto',
+      imgSrc: '/characters/naruto/naruto.png',
+      name: 'Naruto',
+      description: "Naruto, because shouting 'Believe it!' is obviously the most important part of becoming Hokage.",
+    },
+    {
+      id: 'Jiraiya',
+      imgSrc: '/characters/naruto/jiraiya.png',
+      name: 'Jiraiya',
+      description: "Jiraiya, a legendary ninja whose wisdom is only matched by his love for... 'research.'",
+    },
+    {
+      id: 'Sakura',
+      imgSrc: '/characters/naruto/sakura.png',
+      name: 'Sakura',
+      description: "Sakura, who could punch through walls but mostly breaks hearts by chasing Sasuke.",
+    },
+  ]
+  },
+};
 
-const audioSrc = '/assets/music.mp3';
+
+const audioSrc = '/audio/music.mp3';
 ---
 
 <Layout title="Amazeing - Maze Game">

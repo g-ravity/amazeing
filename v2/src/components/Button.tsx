@@ -19,12 +19,15 @@ const Button: React.FC<ButtonProps> = ({
   const handleClick = () => {
     setIsPressed(true);
 
-    playSound('/assets/click.mp3')
+    playSound('/audio/click.mp3')
     
     setTimeout(() => {
       setIsPressed(false);
-      onClick();
-    }, 150);
+
+      setTimeout(() => {
+        onClick();
+      }, 300);
+    }, 300);
   };
   
   const customButtonStyles = `
